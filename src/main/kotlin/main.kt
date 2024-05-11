@@ -1,5 +1,5 @@
 fun main() {
-    val time = agoToText(660)
+    val time = agoToText(75600)
     println("был(а) $time ")
 }
 
@@ -12,17 +12,16 @@ fun agoToText(time: Int) = when (time) {
     else -> "давно"
 }
 
-fun timerMin(min: Int) = when (min) {
-    if (min == 11 || min == 12 || min == 13 || min == 14) "" else
-        1 -> "у"
-
-    2, 3, 4 -> "ы"
-    in 10..20 -> ""
+fun timerMin(min: Int) = when {
+    min in 10..20 ->  ""
+    min % 10 == 1 -> "у"
+    min % 10 in 2..4 -> "ы"
     else -> ""
 }
 
-fun timerHour(hour: Int) = when (hour % 10) {
-    1 -> ""
-    2, 3, 4 -> "а"
+fun timerHour(hour: Int) = when {
+    hour in 10..20 -> "ов"
+    hour % 10 == 1 -> ""
+    hour % 10 in 2..4 -> "а"
     else -> "ов"
 }
