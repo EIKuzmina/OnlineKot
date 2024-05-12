@@ -1,5 +1,5 @@
 fun main() {
-    val transfer = cardBank("Mastercard", 30_000, 50_000)
+    val transfer = cardBank("Mastercard", 10, 0)
     println(transfer)
 }
 
@@ -19,21 +19,22 @@ val limitMast = 75_000
 fun cardBank(card: String, amountd: Int, amountm: Int = 0): Any {
     when (card) {
         cardMast -> {
-            if ((amountd >= limitd) || ((amountd + amountm) >= limitm))
+            if ((amountd > limitd) || ((amountd + amountm) > limitm))
                 return "Превышен лимит, операция невозможна"
-            if ((amountd + amountm) in (1..limitMast)) return amountd
+            if ((amountd + amountm) in (1..limitMast)) return (amountd * 0)
+            if (amountd > limitMast) return (((amountd - limitMast) * holdM) / percent + bet)
             else return ((amountd * holdM) / percent + bet).toInt()
         }
 
         cardVisa -> {
-            if ((amountd >= limitd) || ((amountd + amountm) >= limitm))
+            if ((amountd > limitd) || ((amountd + amountm) > limitm))
                 return "Превышен лимит, операция невозможна"
             if (((amountd * holdV) / percent) > minComission) return (amountd * holdV) / percent
             else return minComission
         }
 
         cardMir -> {
-            if ((amountd >= limitd) || ((amountd + amountm) >= limitm))
+            if ((amountd > limitd) || ((amountd + amountm) > limitm))
                 return "Превышен лимит, операция невозможна"
             return (amountd * 0)
         }
